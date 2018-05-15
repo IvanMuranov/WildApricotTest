@@ -32,3 +32,4 @@ D:\git\WildApricotTest\WildApricotTest\WildApricotTest\obj\Debug\WildApricotTest
 D:\git\WildApricotTest\WildApricotTest\WildApricotTest\obj\Debug\WildApricotTest.pdb
 D:\git\WildApricotTest\WildApricotTest\WildApricotTest\bin\Debug\SeleniumExtras.WaitHelpers.dll
 D:\git\WildApricotTest\WildApricotTest\WildApricotTest\bin\Debug\SeleniumExtras.PageObjects.dll
+D:\git\WildApricotTest\WildApricotTest\WildApricotTest\obj\Debug\WildApricotTest.csprojResolveAssemblyReference.cache

@@ -10,6 +10,7 @@
     using TechTalk.SpecFlow.Assist;
 
     using WildApricotTest.Pages;
+    using WildApricotTest.Pages.AdminViewPages;
 
     [Binding]
     public class NavigationSteps

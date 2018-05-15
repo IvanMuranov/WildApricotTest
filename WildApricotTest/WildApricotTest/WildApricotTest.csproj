@@ -128,7 +128,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CreateNewEvent.feature</DependentUpon>
     </Compile>
-    <Compile Include="Pages\AdminViewPageObject.cs" />
+    <Compile Include="Pages\AdminViewPages\AdminViewPageObject.cs" />
+    <Compile Include="Pages\AdminViewPages\CreateNewSimpleEvent.cs" />
     <Compile Include="Pages\OrganizationHomePageObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Steps\CreateNewEventSteps.cs" />

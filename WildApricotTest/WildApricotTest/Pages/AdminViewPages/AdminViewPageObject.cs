@@ -1,8 +1,11 @@
-﻿namespace WildApricotTest.Pages
+﻿namespace WildApricotTest.Pages.AdminViewPages
 {
     using System;
+    using System.IO;
+    using System.Threading;
 
     using OpenQA.Selenium;
+
     using SeleniumExtras.PageObjects;
 
     using WildApricotTest.CustomMethodsForControls;
@@ -23,12 +26,20 @@
         [FindsBy(How = How.Id, Using = "WaAdminPanel_AdminMenu_AdminMenuEventsEventListEventListModule_addEventBtn_buttonName")]
         private IWebElement BtnAddEvent { get; set; }
 
+        [FindsBy(How = How.XPath, Using = "//*[@id=\"idReactRouterApp\"]/div/div/div/div/div/div/div/div/div/div[1]/a")]
+        private IWebElement BtnSimpleEvent { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//*[@id=\"idReactRouterApp\"]/div/div/div/div/div/div/div/div/div/div[2]/a")]
+        private IWebElement BtnAdvancedEvent { get; set; }
+
         public void OpenAdminMenuOption(AdminMenuOptions option)
         {
             switch (option)
             {
                 case AdminMenuOptions.Events:
                     Helper.CheckIfElementIsClickable(this.driver, this.EventContainer);
+                    //TODO for some reason we cant click to EventContainer when it already clickable, need deeper investigation
+                    Thread.Sleep(2000);
                     this.EventContainer.Click();
                     break;
                 case AdminMenuOptions.Dashboard:
@@ -46,11 +57,25 @@
             }
         }
 
-        public void ClickCreateNewEventBtn()
+        public void CreateNewEvent(string eventType)
         {
             Helper.CheckIfElementIsClickable(this.driver, this.BtnAddEvent);
             this.BtnAddEvent.Click();
-            
+            switch (eventType)
+            {
+                case "simple":
+                    Helper.CheckIfElementIsClickable(this.driver, this.BtnSimpleEvent);
+                    Thread.Sleep(2000);
+                    this.BtnSimpleEvent.Click();
+                    break;
+                case "advanced":
+                    Helper.CheckIfElementIsClickable(this.driver, this.BtnAdvancedEvent);
+                    Thread.Sleep(2000);
+                    this.BtnAdvancedEvent.Click();
+                    break;
+                default:
+                    throw new InvalidDataException($"There is no event type {eventType}");
+            }
         }
     }
     
