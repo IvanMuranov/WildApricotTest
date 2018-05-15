@@ -17,9 +17,15 @@
     {
         private readonly IWebDriver driver;
 
+        private readonly AdminViewPageObject adminViewPageObject;
+
+        private readonly OrganizationHomePageObject organizationHomePageObject;
+
         public NavigationSteps(IWebDriver driver)
         {
             this.driver = driver;
+            this.organizationHomePageObject = new OrganizationHomePageObject(this.driver);
+            this.adminViewPageObject = new AdminViewPageObject(this.driver);
         }
 
         [Given(@"I navigate to application web page")]
@@ -37,36 +43,28 @@
             string userName = data.UserName;
             string password = data.Password;
 
-            OrganizationHomePageObject page = new OrganizationHomePageObject(this.driver);
-
-            page.EnterUserNameAndPassword(userName, password);
+            this.organizationHomePageObject.EnterUserNameAndPassword(userName, password);
         }
 
         [Given(@"I click login on application web page")]
         [When(@"I click login on application web page")]
         public void GivenIClickLogin()
         {
-            OrganizationHomePageObject page = new OrganizationHomePageObject(this.driver);
-
-            page.ClickLogin();
+            this.organizationHomePageObject.ClickLogin();
         }
 
         [Given(@"I switch to admin view from application web page")]
         [When(@"I switch to admin view from application web page")]
         public void GivenISwitchToAdminView()
         {
-            OrganizationHomePageObject page = new OrganizationHomePageObject(this.driver);
-
-            page.SwithToAdminViewPage();
+            this.organizationHomePageObject.SwithToAdminViewPage();
         }
 
         [Given(@"I navigate to Events menu on admin view page")]
         [When(@"I navigate to Events menu on admin view page")]
         public void GiventINavigateToEventsMenuOnAdminViewPage()
         {
-            AdminViewPageObject page = new AdminViewPageObject(this.driver);
-
-            page.OpenAdminMenuOption(AdminMenuOptions.Events);
+            this.adminViewPageObject.OpenAdminMenuOption(AdminMenuOptions.Events);
         }
     }
 }

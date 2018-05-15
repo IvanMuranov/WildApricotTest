@@ -3,7 +3,7 @@
     using OpenQA.Selenium;
     using SeleniumExtras.PageObjects;
 
-    using CustomMethodsForControls;
+    using CustomMethods;
 
     class OrganizationHomePageObject
     {
@@ -15,6 +15,7 @@
             PageFactory.InitElements(this.driver, this);
         }
 
+        #region WebElements
         [FindsBy(How = How.Id, Using = "id_Y3YQQ4g_loginLink")]
         private IWebElement LoginLink { get; set; }
 
@@ -29,33 +30,33 @@
 
         [FindsBy(How = How.XPath, Using = "//*[@id=\"WA_switchToAdmin\"]/a[1]")]
         private IWebElement SwtToAdminView { get; set; }
+        #endregion
 
+        #region Public Methods
         public void EnterUserNameAndPassword(string userName, string password)
         {
-            Helper.CheckIfElementIsClickable(this.driver, this.LoginLink);
+            Helper.CheckIfElementExists(this.driver, this.LoginLink);
 
-            //Click login link
             this.LoginLink.Click();
 
-            //Enter user name
             this.TxtUserName.SendKeys(userName);
-            //Enter password
+            
             this.TxtPassword.SendKeys(password);
         }
 
         public void ClickLogin()
         {
-            Helper.CheckIfElementIsClickable(this.driver, this.BtnLogin);
+            Helper.CheckIfElementExists(this.driver, this.BtnLogin);
 
-            //Click login button
             this.BtnLogin.Click();
         }
 
         public void SwithToAdminViewPage()
         {
-            Helper.CheckIfElementIsClickable(this.driver, this.SwtToAdminView);
+            Helper.CheckIfElementExists(this.driver, this.SwtToAdminView);
 
             this.SwtToAdminView.Click();
         }
+        #endregion
     }
 }

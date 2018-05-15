@@ -1,16 +1,18 @@
-﻿namespace WildApricotTest.CustomMethodsForControls
+﻿namespace WildApricotTest.CustomMethods
 {
     using System;
+    using System.Text.RegularExpressions;
+
     using OpenQA.Selenium;
     using OpenQA.Selenium.Remote;
     using OpenQA.Selenium.Support.UI;
 
     using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
-    class Helper
+    public static class Helper
     {
         //this will search for the element until a timeout is reached
-        public static IWebElement CheckIfElementIsClickable(IWebDriver driver, IWebElement element, int timeout = 10)
+        public static IWebElement CheckIfElementExists(IWebDriver driver, IWebElement element, int timeout = 10)
         {
             try
             {

@@ -87,10 +87,12 @@ namespace WildApricotTest.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Provide a valid information to create new simple event")]
-        public virtual void ProvideAValidInformationToCreateNewSimpleEvent()
+        [NUnit.Framework.DescriptionAttribute("01 Check that providing valid information for simple event creation it will be cr" +
+            "eated properly")]
+        public virtual void _01CheckThatProvidingValidInformationForSimpleEventCreationItWillBeCreatedProperly()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Provide a valid information to create new simple event", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01 Check that providing valid information for simple event creation it will be cr" +
+                    "eated properly", ((string[])(null)));
 #line 13
 this.ScenarioSetup(scenarioInfo);
 #line 4
@@ -100,7 +102,7 @@ this.FeatureBackground();
 #line 15
  testRunner.When("I enter title \'New fancy title\' for new simple event", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 16
-  testRunner.And("I enter tags \'Tag.Tag.Tag\' for new simple event", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I enter tags \'tag.tag.tag\' for new simple event", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 17
   testRunner.And("I enter location \'Fun location\' for new simple event", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 18
@@ -108,15 +110,15 @@ this.FeatureBackground();
 #line 19
   testRunner.And("I enter end date \'30 May 2019\' for new simple event", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 20
-  testRunner.And("I enter start time \'5\' for new simple event", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I enter start time \'5:00 AM\' for new simple event", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 21
-  testRunner.And("I enter end time \'10\' for new simple event", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I enter end time \'10:00 AM\' for new simple event", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 22
-  testRunner.And("I choose enabled status for new simple event", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I choose Enabled status for new simple event", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 23
   testRunner.And("I enter available period from \'30 Jun 2018\' for new simple event", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 24
-  testRunner.And("I enter available period through \'30 Jun 2019\' for new simple event", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I enter available period through \'30 Jul 2018\' for new simple event", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 25
   testRunner.And("I allow guest registrations for new simple event", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 26
@@ -124,8 +126,92 @@ this.FeatureBackground();
 #line 27
   testRunner.And("I do not allow cancellation by registrants for new simple event", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 28
-  testRunner.And("I choose to show registrations who want to be listed to members only for new simp" +
-                    "le event", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("I choose not to show registrations who want to be listed for new simple event", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 29
+  testRunner.And("I save new simple event", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 30
+ testRunner.Then("I check that created simple event have title \'New fancy title\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 31
+  testRunner.And("I check that created simple event have tags \'tag.tag.tag\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 32
+  testRunner.And("I check that created simple event have location \'Fun location\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 33
+  testRunner.And("I check that created simple event have time zone \'(UTC+03:00) Baghdad\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 34
+  testRunner.And("I check that created simple event have date and time \'30 May 2018, 5:00 AM – 30 M" +
+                    "ay 2019, 10:00 AM\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 35
+  testRunner.And("I check that created simple event have Enabled status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 36
+  testRunner.And("I check that created simple event have available period \'From 30 Jun 2018 through" +
+                    " 30 Jul 2018 (61 days after start of event)\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 37
+  testRunner.And("I check that created simple event have allowed guests", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 38
+  testRunner.And("I check that created simple event have guests limit as \'5 per registrant\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 39
+  testRunner.And("I check that created simple event do not allow cancellation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 40
+  testRunner.And("I check that created simple event will not show registrations who want to be list" +
+                    "ed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("02 Check that From and Through dates must be earlier than event end date and exce" +
+            "ption will be displayed")]
+        public virtual void _02CheckThatFromAndThroughDatesMustBeEarlierThanEventEndDateAndExceptionWillBeDisplayed()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02 Check that From and Through dates must be earlier than event end date and exce" +
+                    "ption will be displayed", ((string[])(null)));
+#line 42
+this.ScenarioSetup(scenarioInfo);
+#line 4
+this.FeatureBackground();
+#line 43
+ testRunner.Given("I create new simple event on Event list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 44
+ testRunner.When("I enter title \'New fancy title\' for new simple event", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 45
+  testRunner.And("I enter start date \'30 May 2018\' for new simple event", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 46
+  testRunner.And("I enter end date \'30 May 2019\' for new simple event", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 47
+  testRunner.And("I enter available period from \'30 Jun 2018\' for new simple event", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 48
+  testRunner.And("I enter available period through \'30 Jun 2019\' for new simple event", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 49
+  testRunner.And("I save new simple event", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 50
+ testRunner.Then("I check that error \'From and Through dates must be earlier than event end date\' i" +
+                    "s displayed during the simple event creation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("03 Check that End date can not be earlier than start date")]
+        public virtual void _03CheckThatEndDateCanNotBeEarlierThanStartDate()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("03 Check that End date can not be earlier than start date", ((string[])(null)));
+#line 53
+this.ScenarioSetup(scenarioInfo);
+#line 4
+this.FeatureBackground();
+#line 54
+ testRunner.Given("I create new simple event on Event list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 55
+ testRunner.When("I enter title \'New fancy title\' for new simple event", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 56
+  testRunner.And("I enter start date \'30 May 2019\' for new simple event", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 57
+  testRunner.And("I enter end date \'30 May 2018\' for new simple event", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 58
+  testRunner.And("I save new simple event", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 59
+ testRunner.Then("I check that error \'End date and time can not be earlier than start date and time" +
+                    "\' is displayed during the simple event creation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

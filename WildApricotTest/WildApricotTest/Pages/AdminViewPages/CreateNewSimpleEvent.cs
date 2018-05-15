@@ -6,7 +6,7 @@
 
     using SeleniumExtras.PageObjects;
 
-    using WildApricotTest.CustomMethodsForControls;
+    using WildApricotTest.CustomMethods;
 
     class CreateNewSimpleEvent
     {
@@ -93,37 +93,37 @@
 
         [FindsBy(How = How.XPath, Using = "//*[@id=\"idPrimaryContentBlock1Content\"]")]
         private IWebElement DescriptionTextBox { get; set; }
+
+        [FindsBy(How = How.Id, Using = "toolbarButtons_button_publishButton_buttonName")]
+        private IWebElement SaveSimpleEventButton { get; set; }
+        
+        [FindsBy(How = How.Id, Using = "eventDetailsMain_registrationTypePeriodValidator")]
+        private IWebElement RegistrationTypePeriodValidator { get; set; }
+
+        [FindsBy(How = How.Id, Using = "eventDetailsMain_editEndDateCustom")]
+        private IWebElement EndDateValidator { get; set; }
         #endregion
 
-        #region PublicMethods
+        #region Public Methods
         public void EnterTitle(string value)
         {
-            this.driver.SwitchTo().Frame("contentFrame");
-            Helper.CheckIfElementIsClickable(this.driver, this.TitleTextBox);
-            this.TitleTextBox.SendKeys(value);
-            this.driver.SwitchTo().DefaultContent();
+            this.EnterTextInElementOnContentFrame(value, this.TitleTextBox);
         }
 
         public void EnterTags(string value)
         {
-            this.driver.SwitchTo().Frame("contentFrame");
-            Helper.CheckIfElementIsClickable(this.driver, this.TagsTextBox);
-            this.TagsTextBox.SendKeys(value);
-            this.driver.SwitchTo().DefaultContent();
+            this.EnterTextInElementOnContentFrame(value, this.TagsTextBox);
         }
 
         public void EnterLocation(string value)
         {
-            this.driver.SwitchTo().Frame("contentFrame");
-            Helper.CheckIfElementIsClickable(this.driver, this.LocationTextBox);
-            this.LocationTextBox.SendKeys(value);
-            this.driver.SwitchTo().DefaultContent();
+            this.EnterTextInElementOnContentFrame(value, this.LocationTextBox);
         }
 
         public void UseDefaultOrganizationSettingsForTimeZone()
         {
             this.driver.SwitchTo().Frame("contentFrame");
-            Helper.CheckIfElementIsClickable(this.driver, this.UseDefaultTimeZoneCheckBox);
+            Helper.CheckIfElementExists(this.driver, this.UseDefaultTimeZoneCheckBox);
             if (!this.UseDefaultTimeZoneCheckBox.Selected)
             {
                 this.UseDefaultTimeZoneCheckBox.Submit();
@@ -131,41 +131,24 @@
             this.driver.SwitchTo().DefaultContent();
         }
 
-        //public void UseDefaultOrganizationSettingsForTimeZone(string value)
-        //{
-        //    Helper.CheckIfElementIsClickable(this.driver, this.LocationTextBox);
-        //    this.LocationTextBox.SendKeys(value);
-        //}
-
         public void EnterStartDate(string value)
         {
-            this.driver.SwitchTo().Frame("contentFrame");
-            this.StartDateTextBox.SendKeys(value);
-            this.driver.SwitchTo().DefaultContent();
+            this.EnterTextInElementOnContentFrame(value, this.StartDateTextBox);
         }
 
         public void EnterEndDate(string value)
         {
-            this.driver.SwitchTo().Frame("contentFrame");
-            Helper.CheckIfElementIsClickable(this.driver, this.EndDateTextBox);
-            this.EndDateTextBox.SendKeys(value);
-            this.driver.SwitchTo().DefaultContent();
+            this.EnterTextInElementOnContentFrame(value, this.EndDateTextBox);
         }
 
-        public void EnterStartTime(int value)
+        public void EnterStartTime(string value)
         {
-            this.driver.SwitchTo().Frame("contentFrame");
-            Helper.CheckIfElementIsClickable(this.driver, this.TimeTextBox);
-            this.TimeTextBox.SendKeys(value.ToString());
-            this.driver.SwitchTo().DefaultContent();
+            this.EnterTextInElementOnContentFrame(value, this.TimeTextBox);
         }
 
-        public void EnterEndTime(int value)
+        public void EnterEndTime(string value)
         {
-            this.driver.SwitchTo().Frame("contentFrame");
-            Helper.CheckIfElementIsClickable(this.driver, this.EndTimeTextBox);
-            this.EndTimeTextBox.SendKeys(value.ToString());
-            this.driver.SwitchTo().DefaultContent();
+            this.EnterTextInElementOnContentFrame(value, this.EndTimeTextBox);
         }
 
         public void ChooseStatus(bool enabled)
@@ -173,12 +156,12 @@
             this.driver.SwitchTo().Frame("contentFrame");
             if (enabled)
             {
-                Helper.CheckIfElementIsClickable(this.driver, this.EnabledStatusRadioButton);
+                Helper.CheckIfElementExists(this.driver, this.EnabledStatusRadioButton);
                 this.EnabledStatusRadioButton.Click();
             }
             else
             {
-                Helper.CheckIfElementIsClickable(this.driver, this.DisabledStatusRadioButton);
+                Helper.CheckIfElementExists(this.driver, this.DisabledStatusRadioButton);
                 this.DisabledStatusRadioButton.Click();
             }
             this.driver.SwitchTo().DefaultContent();
@@ -186,24 +169,18 @@
 
         public void EnterAvailableFromPeriod(string value)
         {
-            this.driver.SwitchTo().Frame("contentFrame");
-            Helper.CheckIfElementIsClickable(this.driver, this.AvailablePeriodFromTextBox);
-            this.AvailablePeriodFromTextBox.SendKeys(value);
-            this.driver.SwitchTo().DefaultContent();
+            this.EnterTextInElementOnContentFrame(value, this.AvailablePeriodFromTextBox);
         }
 
         public void EnterAvailableThroughPeriod(string value)
         {
-            this.driver.SwitchTo().Frame("contentFrame");
-            Helper.CheckIfElementIsClickable(this.driver, this.AvailablePeriodThroughTextBox);
-            this.AvailablePeriodThroughTextBox.SendKeys(value);
-            this.driver.SwitchTo().DefaultContent();
+            this.EnterTextInElementOnContentFrame(value, this.AvailablePeriodThroughTextBox);
         }
 
         public void AllowGuestRegistration()
         {
             this.driver.SwitchTo().Frame("contentFrame");
-            Helper.CheckIfElementIsClickable(this.driver, this.AllowGuestRegistrationsCheckBox);
+            Helper.CheckIfElementExists(this.driver, this.AllowGuestRegistrationsCheckBox);
             if (!this.AllowGuestRegistrationsCheckBox.Selected)
             {
                 this.AllowGuestRegistrationsCheckBox.Click();
@@ -214,7 +191,7 @@
         public void DisallowGuestRegistration()
         {
             this.driver.SwitchTo().Frame("contentFrame");
-            Helper.CheckIfElementIsClickable(this.driver, this.AllowGuestRegistrationsCheckBox);
+            Helper.CheckIfElementExists(this.driver, this.AllowGuestRegistrationsCheckBox);
             if (this.AllowGuestRegistrationsCheckBox.Selected)
             {
                 this.AllowGuestRegistrationsCheckBox.Click();
@@ -224,10 +201,7 @@
 
         public void EnterGuestsLimit(int value)
         {
-            this.driver.SwitchTo().Frame("contentFrame");
-            Helper.CheckIfElementIsClickable(this.driver, this.GuestRegistrationsMaxCountTextBox);
-            this.GuestRegistrationsMaxCountTextBox.SendKeys(value.ToString());
-            this.driver.SwitchTo().DefaultContent();
+            this.EnterTextInElementOnContentFrame(value.ToString(), this.GuestRegistrationsMaxCountTextBox);
         }
 
         public void ChooseCancellationStatus(bool allowCancellation)
@@ -235,12 +209,12 @@
             this.driver.SwitchTo().Frame("contentFrame");
             if (allowCancellation)
             {
-                Helper.CheckIfElementIsClickable(this.driver, this.AllowCancellationRadioButton);
+                Helper.CheckIfElementExists(this.driver, this.AllowCancellationRadioButton);
                 this.AllowCancellationRadioButton.Click();
             }
             else
             {
-                Helper.CheckIfElementIsClickable(this.driver, this.DoNotAllowCancellationRadioButton);
+                Helper.CheckIfElementExists(this.driver, this.DoNotAllowCancellationRadioButton);
                 this.DoNotAllowCancellationRadioButton.Click();
             }
             this.driver.SwitchTo().DefaultContent();
@@ -248,16 +222,13 @@
 
         public void EnterCancellationsDaysBeforeEvent(int value)
         {
-            this.driver.SwitchTo().Frame("contentFrame");
-            Helper.CheckIfElementIsClickable(this.driver, this.CancellationDaysBeforeEventTextBox);
-            this.CancellationDaysBeforeEventTextBox.SendKeys(value.ToString());
-            this.driver.SwitchTo().DefaultContent();
+            this.EnterTextInElementOnContentFrame(value.ToString(), this.CancellationDaysBeforeEventTextBox);
         }
 
         public void DoNotShowRegistrants()
         {
             this.driver.SwitchTo().Frame("contentFrame");
-            Helper.CheckIfElementIsClickable(this.driver, this.ShowRegistrantsListCheckBox);
+            Helper.CheckIfElementExists(this.driver, this.ShowRegistrantsListCheckBox);
             if (this.ShowRegistrantsListCheckBox.Selected)
             {
                 this.ShowRegistrantsListCheckBox.Click();
@@ -267,34 +238,62 @@
         public void ShowRegistrants(bool toEveryone)
         {
             this.driver.SwitchTo().Frame("contentFrame");
-            Helper.CheckIfElementIsClickable(this.driver, this.ShowRegistrantsListCheckBox);
+            Helper.CheckIfElementExists(this.driver, this.ShowRegistrantsListCheckBox);
             if (!this.ShowRegistrantsListCheckBox.Selected)
             {
                 this.ShowRegistrantsListCheckBox.Click();
             }
             if (toEveryone)
             {
-                Helper.CheckIfElementIsClickable(this.driver, this.ShowRegistrantsToEveryoneRadioButton);
+                Helper.CheckIfElementExists(this.driver, this.ShowRegistrantsToEveryoneRadioButton);
                 this.ShowRegistrantsToEveryoneRadioButton.Click();
             }
             else
             {
-                Helper.CheckIfElementIsClickable(this.driver, this.ShowRegistrantsToMembersOnlyRadioButton);
+                Helper.CheckIfElementExists(this.driver, this.ShowRegistrantsToMembersOnlyRadioButton);
                 this.ShowRegistrantsToMembersOnlyRadioButton.Click();
             }
             this.driver.SwitchTo().DefaultContent();
         }
 
-        public void EnterDescription(string value)
+        public void SaveNewSimpleEvent()
         {
-            this.driver.SwitchTo().Frame("contentFrame");
-            Helper.CheckIfElementIsClickable(this.driver, this.DescriptionTextBox);
-            this.DescriptionTextBox.SendKeys(value);
-            this.driver.SwitchTo().DefaultContent();
+            Helper.CheckIfElementExists(this.driver, this.SaveSimpleEventButton);
+            this.SaveSimpleEventButton.Click();
+        }
+
+        public bool IsRegistrationTypePeriodValidatorVisiable()
+        {
+            return this.IsElementOnContentFrameVisiable(this.RegistrationTypePeriodValidator);
+        }
+        
+        public bool IsEndDateValidatorVisiable()
+        {
+            return this.IsElementOnContentFrameVisiable(this.EndDateValidator);
         }
 
         #endregion
 
+        #region Private Methods
+        //TODO move this methods to base class or to helper
+        private bool IsElementOnContentFrameVisiable(IWebElement element)
+        {
+            this.driver.SwitchTo().Frame("contentFrame");
+            Helper.CheckIfElementExists(this.driver, element);
+            bool isVisiable = element.Displayed;
+            this.driver.SwitchTo().DefaultContent();
+            return isVisiable;
+        }
+
+        private void EnterTextInElementOnContentFrame(string value, IWebElement element)
+        {
+            this.driver.SwitchTo().Frame("contentFrame");
+            Helper.CheckIfElementExists(this.driver, element);
+            element.SendKeys(value);
+            this.driver.SwitchTo().DefaultContent();
+        }
+
+        #endregion
     }
 }
 

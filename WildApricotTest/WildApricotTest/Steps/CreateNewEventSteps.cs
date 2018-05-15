@@ -58,44 +58,44 @@
             this.createNewSimpleEventFrame.UseDefaultOrganizationSettingsForTimeZone();
         }
 
-        [Given(@"I enter start date '([^']+)' for new simple event")]
-        [When(@"I enter start date '([^']+)' for new simple event")]
+        [Given(@"I enter start date '((?:\d{1,2} )(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)(?: \d{4}))' for new simple event")]
+        [When(@"I enter start date '((?:\d{1,2} )(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)(?: \d{4}))' for new simple event")]
         public void GivenIEnterStartDateForNewSimpleEvent(string startDate)
         {
             this.createNewSimpleEventFrame.EnterStartDate(startDate);
         }
 
-        [Given(@"I enter end date '([^']+)' for new simple event")]
-        [When(@"I enter end date '([^']+)' for new simple event")]
+        [Given(@"I enter end date '((?:\d{1,2} )(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)(?: \d{4}))' for new simple event")]
+        [When(@"I enter end date '((?:\d{1,2} )(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)(?: \d{4}))' for new simple event")]
         public void GivenIEnterEndtDateForNewSimpleEvent(string endDate)
         {
             this.createNewSimpleEventFrame.EnterEndDate(endDate);
         }
 
-        [Given(@"I enter start time '(\d+)' for new simple event")]
-        [When(@"I enter start time '(\d+)' for new simple event")]
-        public void GivenIEnterStartTimeForNewSimpleEvent(int startTime)
+        [Given(@"I enter start time '(\d{1,2}:\d{1,2} (?:AM|PM))' for new simple event")]
+        [When(@"I enter start time '(\d{1,2}:\d{1,2} (?:AM|PM))' for new simple event")]
+        public void GivenIEnterStartTimeForNewSimpleEvent(string startTime)
         {
             this.createNewSimpleEventFrame.EnterStartTime(startTime);
         }
 
-        [Given(@"I enter end time '(\d+)' for new simple event")]
-        [When(@"I enter end time '(\d+)' for new simple event")]
-        public void GivenIEnterEndTimeForNewSimpleEvent(int endTime)
+        [Given(@"I enter end time '(\d{1,2}:\d{2} (?:AM|PM))' for new simple event")]
+        [When(@"I enter end time '(\d{1,2}:\d{2} (?:AM|PM))' for new simple event")]
+        public void GivenIEnterEndTimeForNewSimpleEvent(string endTime)
         {
             this.createNewSimpleEventFrame.EnterEndTime(endTime);
         }
 
-        [Given(@"I choose (enabled|disabled) status for new simple event")]
-        [When(@"I choose (enabled|disabled) status for new simple event")]
+        [Given(@"I choose (Enabled|Disabled) status for new simple event")]
+        [When(@"I choose (Enabled|Disabled) status for new simple event")]
         public void GivenIChooseStatusForNewSimpleEvent(string status)
         {
             switch (status)
             {
-                case "enabled":
+                case "Enabled":
                     this.createNewSimpleEventFrame.ChooseStatus(enabled: true);
                     break;
-                case "disabled":
+                case "Disabled":
                     this.createNewSimpleEventFrame.ChooseStatus(enabled: false);
                     break;
                 default:
@@ -103,15 +103,15 @@
             }
         }
 
-        [Given(@"I enter available period from '([^']+)' for new simple event")]
-        [When(@"I enter available period from '([^']+)' for new simple event")]
+        [Given(@"I enter available period from '((?:\d{1,2} )(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)(?: \d{4}))' for new simple event")]
+        [When(@"I enter available period from '((?:\d{1,2} )(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)(?: \d{4}))' for new simple event")]
         public void GivenIEnterAvailablePeriodFromForNewSimpleEvent(string from)
         {
             this.createNewSimpleEventFrame.EnterAvailableFromPeriod(from);
         }
 
-        [Given(@"I enter available period through '([^']+)' for new simple event")]
-        [When(@"I enter available period through '([^']+)' for new simple event")]
+        [Given(@"I enter available period through '((?:\d{1,2} )(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)(?: \d{4}))' for new simple event")]
+        [When(@"I enter available period through '((?:\d{1,2} )(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)(?: \d{4}))' for new simple event")]
         public void GivenIEnterAvailablePeriodThroughForNewSimpleEvent(string through)
         {
             this.createNewSimpleEventFrame.EnterAvailableThroughPeriod(through);
@@ -145,35 +145,35 @@
             this.createNewSimpleEventFrame.ChooseCancellationStatus(string.IsNullOrEmpty(doNotAllow));
         }
 
-        [Given(@"I choose (not |)to show registrations who want to be listed to (everyone|members only) for new simple event")]
-        [When(@"I choose (not |)to show registrations who want to be listed to (everyone|members only) for new simple event")]
-        public void GivenIChooseToShowRegistrantsWhoWantToBeListedForNewSimpleEvent(string notToShow, string whom)
+        [Given(@"I choose to show registrations who want to be listed to (everyone|members only) for new simple event")]
+        [When(@"I choose to show registrations who want to be listed to (everyone|members only) for new simple event")]
+        public void GivenIChooseToShowRegistrantsWhoWantToBeListedForNewSimpleEvent(string whom)
         {
-            if (string.IsNullOrEmpty(notToShow))
+            switch (whom)
             {
-                switch (whom)
-                {
-                    case "everyone":
-                        this.createNewSimpleEventFrame.ShowRegistrants(toEveryone: true);
-                        break;
-                    case "members only":
-                        this.createNewSimpleEventFrame.ShowRegistrants(toEveryone: false);
-                        break;
-                    default:
-                        break;
-                }
-            }
-            else
-            {
-                this.createNewSimpleEventFrame.DoNotShowRegistrants();
+                case "everyone":
+                    this.createNewSimpleEventFrame.ShowRegistrants(toEveryone: true);
+                    break;
+                case "members only":
+                    this.createNewSimpleEventFrame.ShowRegistrants(toEveryone: false);
+                    break;
+                default:
+                    break;
             }
         }
 
-        [Given(@"I enter description '([^']+)' for new simple event")]
-        [When(@"I enter description '([^']+)' for new simple event")]
-        public void GivenIEntedDescriptionForNewSimpleEvent(string description)
+        [Given(@"I choose not to show registrations who want to be listed for new simple event")]
+        [When(@"I choose not to show registrations who want to be listed for new simple event")]
+        public void GivenIChooseNotToShowRegistrantsWhoWantToBeListedForNewSimpleEvent()
         {
-            this.createNewSimpleEventFrame.EnterDescription(description);
+            this.createNewSimpleEventFrame.DoNotShowRegistrants();
+        }
+
+        [Given(@"I save new simple event")]
+        [When(@"I save new simple event")]
+        public void GivenISaveNewSimpleEvent()
+        {
+            this.createNewSimpleEventFrame.SaveNewSimpleEvent();
         }
     }
 }
